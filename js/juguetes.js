@@ -20,24 +20,46 @@ async function getData(){
     traerJuguetes()
     console.log(juguetes)
     // Funcion para crear las cartas dinamicamente segun la cantidad de juguetes que haya en pantalla
-    function crearArticulo(jugueteF){
+    function crearArticulo(parametro){
         var contenedorJuguetes = document.getElementById("contenedorJuguetes") 
-        var templateHtml = ""
-        for(i=0;i<juguetes.length;i++){
-                templateHtml+=`<div class="card m-2 carta" style="width: 16rem;">
-                <img src="${jugueteF[i].imagen}" alt="Petshop MINDY" style = "height: 24vh;">
-                <div class="card-body">
-                    <h5>${jugueteF[i].nombre}</h5>
-                    <p>${jugueteF[i].descripcion}</p>
-                    <div>
-                        <p class="fw-bold">Precio: $${jugueteF[i].precio}</p>
-                        <p>Stock: ${jugueteF[i].stock}</p>
-                        <input type="number" class="cantidad" name="cantidad" value="1">
-                        <button class="boton-agregar" type="button" data-th="${jugueteF._id}">Agregar al carrito</button>
-                    </div>
+        if(parametro.length!=0){
+            var templateHtml = ""    
+        parametro.forEach(juguete => {
+            if (juguete.stock > 5){
+            templateHtml += `<div class="card m-2 carta" style="width: 16rem;">
+            <img src="${juguete.imagen}" alt="Petshop MINDY" style = "height: 24vh;">
+            <div class="card-body">
+                <h5>${juguete.nombre}</h5>
+                <p>${juguete.descripcion}</p>
+                <div>
+                    <p class="fw-bold">Precio: $${juguete.precio}</p>
+                    <p>Stock: ${juguete.stock}</p>
+                    <input type="number" class="cantidad" name="cantidad" value="1">
+                    <button class="boton-agregar" type="button" data-th="${juguete._id}">Agregar al carrito</button>
                 </div>
-            </div>`
-                contenedorJuguetes.innerHTML = templateHtml
+            </div>
+        </div>`}
+        else{
+            templateHtml += `<div class="card m-2 carta" style="width: 16rem;">
+            <img src="${juguete.imagen}" alt="Petshop MINDY" style = "height: 24vh;">
+            <div class="card-body">
+                <h5>${juguete.nombre}</h5>
+                <p>${juguete.descripcion}</p>
+                <div>
+                    <p class="fw-bold">Precio: $${juguete.precio}</p>
+                    <p style ="color: red">Stock: ${juguete.stock} ULTIMAS UNIDADES!!</p>
+                    <input type="number" class="cantidad" name="cantidad" value="1">
+                    <button class="boton-agregar" type="button" data-th="${juguete._id}">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>`
+        }
+        })
+        contenedorJuguetes.innerHTML = templateHtml     
+        }else{
+            contenedorJuguetes.innerHTML = `<p>No se han encontrado juguetes con ese nombre</p>`
+            console.log(contenedorJuguetes)
+            console.log("")
         }
     }
     // Capturo los datos del search
@@ -45,7 +67,6 @@ async function getData(){
     inputsearch.addEventListener("keyup", (event) => {
         busqueda = event.target.value;
         filtros();
-        console.log(busqueda);
     })
     // 
     // Segun los input, voy filtrando
