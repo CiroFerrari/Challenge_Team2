@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+</head>
+
+<body>
+    <div class="carrito" id="carrito">
+        <div class="producto">
+            <div class="titulo-producto">
+                <h3>Agromycin 11</h3>
+            </div>
+            <div class="img-producto">
+                <img src="https://www.agrovetmarket.com/uploads/10_50469a592eff9bf30734dc645d669649.png"
+                    alt="imgproducto">
+            </div>
+            <div>
+                <label for="cantidad">Cantidad</label>
+                <input type="number" name="cantidad" value="3">
+                <p>Precio: $ 520</p>
+                <p>Subtotal: $1560 </p>
+            </div>
+            <button class="eliminar-producto">Eliminar</button>
+        </div>
+        <div class="producto">
+            <div class="titulo-producto">
+                <h3>loquamox c</h3>
+            </div>
+            <div class="img-producto">
+                <img src="https://www.agrovetmarket.com/uploads/355_5a44cb181e0760eb6e504c02073eaf80.png"
+                    alt="imgproducto">
+            </div>
+            <div>
+                <label for="cantidad">Cantidad</label>
+                <input type="number" name="cantidad" value="2">
+                <p>Precio: $ 400</p>
+                <p>Subtotal: $800 </p>
+            </div>
+            <button class="eliminar-producto">Eliminar</button>
+        </div>
+    </div>
+    <div>
+        <button>Continuar Compra</button>
+        <button id="limpiar-carrito">Limpiar Carrito</button>
+    </div>
+    <script src="../js/carrito.js"></script>
+</body>
+
+</html>
