@@ -32,15 +32,17 @@ async function getData(){
                 paramArray.forEach(
                     producto =>{
                         nuevoHtml+=`
-                        <div>
+                        <div class="producto">
                             <img src="${producto.imagen}"  alt="imagen-farmacia">
                             <div>
                                 <h5>${producto.nombre}</h5>
                                 <p>${producto.descripcion}</p>
                                 <p>Stock: ${producto.stock}</p>
-                                <div>
+                                <div class="padre">
                                     <p>Precio: $ ${producto.precio}</p>
-                                    <a onclick="Carrito(${producto._id})">Agregar al carrito</a>
+                                    <label>Cantidad:</label>
+                                    <input type="number" class="cantidad" name="cantidad" value="1">
+                                    <button class="boton-agregar" type="button" data-th="${producto._id}">Agregar al carrito</button>
                                 </div>
                             </div>
                         </div>
@@ -70,4 +72,13 @@ async function getData(){
         return arregloFiltrado 
     }  
     
+    document.querySelectorAll('.boton-agregar').forEach(element => {
+        element.addEventListener('click', function() {
+           var cantidad = this.parentElement.querySelector('.cantidad').value;
+           var id = this.getAttribute('data-th');
+
+
+        })
+    });
+
 }
