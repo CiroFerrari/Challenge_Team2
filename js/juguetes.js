@@ -26,34 +26,44 @@ async function getData(){
             var templateHtml = ""    
         parametro.forEach(juguete => {
             if (juguete.stock > 5){
-            templateHtml += `<div class="card m-2 carta" style="width: 16rem;">
-            <img src="${juguete.imagen}" alt="Petshop MINDY" style = "height: 24vh;">
-            <div class="card-body">
-                <h5>${juguete.nombre}</h5>
-                <p>${juguete.descripcion}</p>
-                <div>
-                    <p class="fw-bold">Precio: $${juguete.precio}</p>
-                    <p>Stock: ${juguete.stock}</p>
-                    <input type="number" class="cantidad" name="cantidad" value="1">
-                    <button class="boton-agregar" type="button" data-th="${juguete._id}">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>`}
+            templateHtml += `<div class="card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 44rem;">
+                                <img src="${juguete.imagen}" alt="Petshop MINDY" class="card-img-top" style = "width: 75%;" >
+                                <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
+                                    <div class="d-flex flex-column justify-content-between align-items-center">
+                                        <h5 class="card-title">${juguete.nombre}</h5>
+                                        <p class="card-text">${juguete.descripcion}</p>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-end align-items-center">
+                                        <p class="fw-bold my-1">Precio: $${juguete.precio}</p>
+                                        <p class="my-1">Stock: ${juguete.stock}</p>
+                                        <div class="d-flex flex-row justify-content-center my-1">
+                                            <label class="me-3">Cantidad:</label>
+                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                        </div> 
+                                        <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${juguete._id}">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>`}
         else{
-            templateHtml += `<div class="card m-2 carta" style="width: 16rem;">
-            <img src="${juguete.imagen}" alt="Petshop MINDY" style = "height: 24vh;">
-            <div class="card-body">
-                <h5>${juguete.nombre}</h5>
-                <p>${juguete.descripcion}</p>
-                <div>
-                    <p class="fw-bold">Precio: $${juguete.precio}</p>
-                    <p style ="color: red">Stock: ${juguete.stock} ULTIMAS UNIDADES!!</p>
-                    <input type="number" class="cantidad" name="cantidad" value="1">
-                    <button class="boton-agregar" type="button" data-th="${juguete._id}">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>`
-        }
+            templateHtml += `<div class="card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 44rem;">
+                                <img src="${juguete.imagen}" alt="Petshop MINDY"class="card-img-top" style = "width: 75%;">
+                                <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
+                                    <div class="d-flex flex-column justify-content-between align-items-center">
+                                        <h5 class="card-title">${juguete.nombre}</h5>
+                                        <p class="card-text">${juguete.descripcion}</p>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-end align-items-center">
+                                        <p class="fw-bold my-1">Precio: $${juguete.precio}</p>
+                                        <p class="my-1" style="color: red">Stock: ${juguete.stock} ULTIMAS UNIDADES!!</p>
+                                        <div class="d-flex flex-row justify-content-center my-1">
+                                            <label class="me-3">Cantidad:</label> 
+                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                        </div>
+                                        <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${juguete._id}">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>`
+            }
         })
         contenedorJuguetes.innerHTML = templateHtml     
         }else{
