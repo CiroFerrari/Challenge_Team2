@@ -33,36 +33,44 @@ async function getData(){
                     producto =>{
                         if (producto.stock < 5){
                         nuevoHtml+=`
-                        <div class="producto">
-                            <img src="${producto.imagen}"  alt="imagen-farmacia">
-                            <div>
-                                <h5>${producto.nombre}</h5>
-                                <p>${producto.descripcion}</p>
-                                <p style="color: red;">Stock: ${producto.stock}  Ultimas unidades!!</p>
-                                <div class="padre">
-                                    <p>Precio: $ ${producto.precio}</p>
-                                    <label>Cantidad:</label>
-                                    <input type="number" class="cantidad" name="cantidad" value="1">
-                                    <button class="boton-agregar" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                        <div class="card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
+                            <img src="${producto.imagen}" class="card-img-top" style = "width: 75%;" alt="imagen-farmacia">
+                                <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
+                                    <div class="d-flex flex-column justify-content-between align-items-center">
+                                        <h5 class="card-title">${producto.nombre}</h5>
+                                        <p class="card-text">${producto.descripcion}</p>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-end align-items-center">
+                                        <p class="my-1" style="color: red;">Stock: ${producto.stock}  Ultimas unidades!!</p>
+                                        <p class="fw-bold my-1">Precio: $ ${producto.precio}</p>
+                                        <div class="d-flex flex-row justify-content-center my-1">
+                                            <label class="me-3">Cantidad:</label>
+                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                        </div>
+                                        <button class="btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                         `
                     } else {
                         nuevoHtml+=`
-                        <div class="producto">
-                            <img src="${producto.imagen}"  alt="imagen-farmacia">
-                            <div>
-                                <h5>${producto.nombre}</h5>
-                                <p>${producto.descripcion}</p>
-                                <p>Stock: ${producto.stock}</p>
-                                <div class="padre">
-                                    <p>Precio: $ ${producto.precio}</p>
-                                    <label>Cantidad:</label>
-                                    <input type="number" class="cantidad" name="cantidad" value="1">
-                                    <button class="boton-agregar" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                        <div class="card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
+                            <img src="${producto.imagen}" class="card-img-top" style = "width: 75%;" alt="imagen-farmacia">
+                                <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
+                                    <div class="d-flex flex-column justify-content-between align-items-center">
+                                        <h5 class="card-title">${producto.nombre}</h5>
+                                        <p class="card-text">${producto.descripcion}</p>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-end align-items-center">
+                                        <p class="my-1">Stock: ${producto.stock}</p>
+                                        <p class="my-1 fw-bold">Precio: $ ${producto.precio}</p>   
+                                        <div class="d-flex flex-row justify-content-around my-1"> 
+                                            <label class="me-3">Cantidad:</label>
+                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                        </div>
+                                        <button class="btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                         `
                     }
