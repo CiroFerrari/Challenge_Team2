@@ -1,5 +1,6 @@
 document.getElementById("limpiar-carrito").addEventListener("click", function() {
     document.getElementById('carrito').innerHTML = "";
+    localStorage.setItem("carrito", "");
 });
 
 document.querySelectorAll(".eliminar-producto").forEach(element => {
