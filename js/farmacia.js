@@ -31,6 +31,24 @@ async function getData(){
                 let nuevoHtml = "";
                 paramArray.forEach(
                     producto =>{
+                        if (producto.stock < 5){
+                        nuevoHtml+=`
+                        <div class="producto">
+                            <img src="${producto.imagen}"  alt="imagen-farmacia">
+                            <div>
+                                <h5>${producto.nombre}</h5>
+                                <p>${producto.descripcion}</p>
+                                <p style="color: red;">Stock: ${producto.stock}  Ultimas unidades!!</p>
+                                <div class="padre">
+                                    <p>Precio: $ ${producto.precio}</p>
+                                    <label>Cantidad:</label>
+                                    <input type="number" class="cantidad" name="cantidad" value="1">
+                                    <button class="boton-agregar" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                        `
+                    } else {
                         nuevoHtml+=`
                         <div class="producto">
                             <img src="${producto.imagen}"  alt="imagen-farmacia">
@@ -47,6 +65,7 @@ async function getData(){
                             </div>
                         </div>
                         `
+                    }
                     })
                     divContenedorFarmacia.innerHTML = nuevoHtml;
         }else{
