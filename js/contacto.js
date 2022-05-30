@@ -3,6 +3,8 @@ let botonForm = document.getElementById("botonForm");
 
 botonForm.addEventListener('click', evento => mensajeExito())
 function mensajeExito() {
-    return alert("Su mensaje se ha enviado con éxito. ¡Muchas gracias!")
+    // return alert("Su mensaje se ha enviado con éxito. ¡Muchas gracias!")
+
+    return mensajeExitoso.innerHTML=`Su mensaje se ha enviado con éxito. ¡Muchas gracias!`
 
 }
