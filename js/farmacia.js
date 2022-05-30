@@ -33,7 +33,7 @@ async function getData(){
                     producto =>{
                         if (producto.stock < 5){
                         nuevoHtml+=`
-                        <div class="card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
+                        <div class="product card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
                             <img src="${producto.imagen}" class="card-img-top" style = "width: 75%;" alt="imagen-farmacia">
                                 <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
                                     <div class="d-flex flex-column justify-content-between align-items-center">
@@ -47,14 +47,14 @@ async function getData(){
                                             <label class="me-3">Cantidad:</label>
                                             <input type="number" class="cantidad" name="cantidad" value="1">
                                         </div>
-                                        <button class="btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                                        <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
                                     </div>
                                 </div>
                         </div>
                         `
                     } else {
                         nuevoHtml+=`
-                        <div class="card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
+                        <div class="product card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
                             <img src="${producto.imagen}" class="card-img-top" style = "width: 75%;" alt="imagen-farmacia">
                                 <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
                                     <div class="d-flex flex-column justify-content-between align-items-center">
@@ -68,7 +68,7 @@ async function getData(){
                                             <label class="me-3">Cantidad:</label>
                                             <input type="number" class="cantidad" name="cantidad" value="1">
                                         </div>
-                                        <button class="btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                                        <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
                                     </div>
                                 </div>
                         </div>
@@ -106,7 +106,7 @@ async function getData(){
                 carrito = JSON.parse(localStorage.getItem("carrito"));
             }
 
-           var cantidad = this.parentElement.querySelector('.cantidad').value;
+           var cantidad = this.closest('.product').querySelector('.cantidad').value;
            var id = this.getAttribute('data-th');
            var agregoCantidad = false;
            var producto = {
