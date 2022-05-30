@@ -40,7 +40,7 @@ async function getData(){
                                 <p>Stock: ${producto.stock}</p>
                                 <div>
                                     <p>Precio: $ ${producto.precio}</p>
-                                    <a onclick="Carrito(${juguetes[i].id})">Agregar al carrito</a>
+                                    <a onclick="Carrito(${producto._id})">Agregar al carrito</a>
                                 </div>
                             </div>
                         </div>
