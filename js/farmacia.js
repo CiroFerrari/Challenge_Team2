@@ -74,10 +74,34 @@ async function getData(){
     
     document.querySelectorAll('.boton-agregar').forEach(element => {
         element.addEventListener('click', function() {
+            var carrito = [];
+            if (localStorage.getItem("carrito")) {  
+                carrito = JSON.parse(localStorage.getItem("carrito"));
+            }
+
            var cantidad = this.parentElement.querySelector('.cantidad').value;
            var id = this.getAttribute('data-th');
+           var agregoCantidad = false;
+           var producto = {
+               id: id,
+               cantidad: cantidad
+           }
+            if (localStorage.getItem("carrito")) {  
+                for(var i=0; carrito.length > i; i++){
+                    if(carrito[i].id == id){
+                        carrito[i].cantidad = Number(carrito[i].cantidad) + Number(cantidad); 
+                        agregoCantidad = true;
+                    }
+                }
+            }
+
+            if(agregoCantidad === false){
+                carrito.push(producto);
+            }
 
 
+           localStorage.setItem("carrito", JSON.stringify(carrito));
+            
         })
     });
 
