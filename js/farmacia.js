@@ -9,7 +9,7 @@ async function getData(){
 
     let productosFarmacia = [];
     let divContenedorFarmacia = document.getElementById("ContenedorFarmacia")
-
+    let contenedorBoton1 = document.getElementById("boton-agregar1")
     
 
 // Funcion para traer los productos de farmacia       
@@ -47,7 +47,7 @@ async function getData(){
                                             <label class="me-3">Cantidad:</label>
                                             <input type="number" class="cantidad" min="1" max="${producto.stock}" name="cantidad" value="1">
                                         </div>
-                                        <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
+                                        <button id="boton-agregar1" class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
                                     </div>
                                 </div>
                         </div>
@@ -102,6 +102,10 @@ async function getData(){
     
     document.querySelectorAll('.boton-agregar').forEach(element => {
         element.addEventListener('click', function() {
+            this.classList.remove("btn-danger");
+            this.classList.add("btn-success")
+            this.innerHTML = "agregado"
+           
             var carrito = [];
             if (localStorage.getItem("carrito")) {  
                 carrito = JSON.parse(localStorage.getItem("carrito"));
