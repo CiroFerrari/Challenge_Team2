@@ -67,7 +67,7 @@ async function getData(){
         })
         contenedorJuguetes.innerHTML = templateHtml     
         }else{
-            contenedorJuguetes.innerHTML = `<p>No se han encontrado juguetes con ese nombre</p>`
+            contenedorJuguetes.innerHTML = `<p class="my-4 fs-4">No se han encontrado juguetes con ese nombre.</p>`
             console.log(contenedorJuguetes)
             console.log("")
         }

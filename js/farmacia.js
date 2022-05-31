@@ -77,7 +77,7 @@ async function getData(){
                     })
                     divContenedorFarmacia.innerHTML = nuevoHtml;
         }else{
-            divContenedorFarmacia.innerHTML=` <p>No se han encontrado productos con ese nombre</p>`;
+            divContenedorFarmacia.innerHTML=` <p class="my-4 fs-4">No se han encontrado productos con ese nombre.</p>`;
         }        
     }
     imprimirProductosFarmacia(productosFarmacia)
