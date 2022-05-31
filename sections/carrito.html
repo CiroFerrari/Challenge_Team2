@@ -10,8 +10,8 @@
     <title>Carrito</title>
 </head>
 
-<body>
-    <header>
+<body class="d-flex flex-column justify-content-center align-items-center">
+    <header class="w-100">
         <nav class="navbar navbar-expand-lg btn-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../index.html"><img id="logo" src="../assets/Logo.jpg" alt="logo"></a>
@@ -49,16 +49,32 @@
             </div>
         </nav>
     </header>
-    <div class="carrito" id="carrito">
-    </div>
+    <main class="h-100 d-flex align-items-center justify-content-between w-75 py-3">
+        <div id="carrito" class="d-flex flex-wrap justify-content-center my-5"></div>
 
-    <div>
-        <button>Continuar Compra</button>
-        <button id="limpiar-carrito">Limpiar Carrito</button>
-    </div>
+        <div class="card m-2 d-flex flex-column justify-content-between align-items-center py-3" style="width: 20rem; height: 35rem;">
+            
+            <div class="card-body d-flex flex-column align-items-center w-100">
+              <div class="d-flex flex-column align-items-center h-50 justify-content-around">
+                <h3 class="card-title">Total a pagar: </h3>
+                <p class="card-text fs-2">$4999</p>  
+              </div>
+                <div class="d-flex flex-column align-items-center justify-content-evenly h-50">
+                <button class="px-2 btn btn-primary mt-2 px-5">Pagar</button>
+                <button class="px-2 btn btn-warning mt-2 px-3" id="limpiar-carrito">Limpiar Carrito</button>  
+              </div>
+              </div>
+          </div>
+
+        <!-- <div class="d-flex justify-content-center my-auto">
+            <button class="px-2 me-5 btn btn-primary mt-2">Continuar Compra</button>
+            <button class="px-2 btn btn-primary mt-2" id="limpiar-carrito">Limpiar Carrito</button>
+        </div> -->
+    </main>
 
 
-    <footer>
+
+    <footer class="w-100">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div id="pfooter">
                 <p>Franco Ciro Ferrari</p>
