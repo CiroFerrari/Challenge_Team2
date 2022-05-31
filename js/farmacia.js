@@ -41,11 +41,11 @@ async function getData(){
                                         <p class="card-text">${producto.descripcion}</p>
                                     </div>
                                     <div class="d-flex flex-column justify-content-end align-items-center">
-                                        <p class="my-1" style="color: red;">Stock: ${producto.stock}  Ultimas unidades!!</p>
+                                        <p class="my-1" style="color: red;">Stock: ${producto.stock}  ULTIMAS UNIDADES!!!!</p>
                                         <p class="fw-bold my-1">Precio: $ ${producto.precio}</p>
                                         <div class="d-flex flex-row justify-content-center my-1">
                                             <label class="me-3">Cantidad:</label>
-                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                            <input type="number" class="cantidad" min="1" max="${producto.stock}" name="cantidad" value="1">
                                         </div>
                                         <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
                                     </div>
@@ -66,7 +66,7 @@ async function getData(){
                                         <p class="my-1 fw-bold">Precio: $ ${producto.precio}</p>   
                                         <div class="d-flex flex-row justify-content-around my-1"> 
                                             <label class="me-3">Cantidad:</label>
-                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                            <input type="number" class="cantidad" min="1" max="${producto.stock}"  name="cantidad" value="1">
                                         </div>
                                         <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
                                     </div>
@@ -85,6 +85,7 @@ async function getData(){
     let contenidoSearch = document.querySelector("#searchInput");
     contenidoSearch.addEventListener("keyup", filterAndRender);
 
+    
 // Filtra e imprime el nombre del producto puesto en el input search
     function filterAndRender(){
         let palabrasDelBuscador = contenidoSearch.value.toLowerCase();
@@ -125,6 +126,7 @@ async function getData(){
             if(agregoCantidad === false){
                 carrito.push(producto);
             }
+            
 
 
            localStorage.setItem("carrito", JSON.stringify(carrito));
