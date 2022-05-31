@@ -4,6 +4,12 @@ document.getElementById("limpiar-carrito").addEventListener("click", function ()
 
     localStorage.setItem("carrito", "");
 });
+document.getElementById("finalizar").addEventListener("click", function () {
+    document.getElementById('carrito').innerHTML = "Su compra fue exitosa";
+    document.getElementById('total').innerHTML = '$0';
+
+    localStorage.setItem("carrito", "");
+});
 
 
 getData()
