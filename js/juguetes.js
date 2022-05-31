@@ -38,7 +38,7 @@ async function getData(){
                                         <p class="my-1">Stock: ${juguete.stock}</p>
                                         <div class="d-flex flex-row justify-content-center my-1">
                                             <label class="me-3">Cantidad:</label>
-                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                            <input type="number" class="cantidad" name="cantidad" value="1" min="1" max="${juguete.stock}">
                                         </div> 
                                         <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${juguete._id}">Agregar al carrito</button>
                                     </div>
@@ -57,7 +57,7 @@ async function getData(){
                                         <p class="my-1" style="color: red">Stock: ${juguete.stock} ULTIMAS UNIDADES!!</p>
                                         <div class="d-flex flex-row justify-content-center my-1">
                                             <label class="me-3">Cantidad:</label> 
-                                            <input type="number" class="cantidad" name="cantidad" value="1">
+                                            <input type="number" class="cantidad" name="cantidad" value="1" min="1" max="${juguete.stock}">
                                         </div>
                                         <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${juguete._id}">Agregar al carrito</button>
                                     </div>
@@ -92,18 +92,21 @@ async function getData(){
     }filtros()
     document.querySelectorAll('.boton-agregar').forEach(element => {
         element.addEventListener('click', function() {
+            this.classList.remove("btn-danger");
+            this.classList.add("btn-success")
+            this.innerHTML = "Agregado"
             var carrito = [];
             if (localStorage.getItem("carrito")) {  
                 carrito = JSON.parse(localStorage.getItem("carrito"));
             }
 
-           var cantidad = this.parentElement.querySelector('.cantidad').value;
-           var id = this.getAttribute('data-th');
-           var agregoCantidad = false;
-           var producto = {
-               id: id,
-               cantidad: cantidad
-           }
+            var cantidad = this.parentElement.querySelector('.cantidad').value;
+            var id = this.getAttribute('data-th');
+            var agregoCantidad = false;
+            var producto = {
+                id: id,
+                cantidad: cantidad
+            }
             if (localStorage.getItem("carrito")) {  
                 for(var i=0; carrito.length > i; i++){
                     if(carrito[i].id == id){
@@ -118,7 +121,7 @@ async function getData(){
             }
 
 
-           localStorage.setItem("carrito", JSON.stringify(carrito));
+            localStorage.setItem("carrito", JSON.stringify(carrito));
             
         })
     });
