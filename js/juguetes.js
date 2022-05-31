@@ -80,7 +80,7 @@ async function getData(){
         document.querySelectorAll('.boton-agregar').forEach(element => {
             element.addEventListener('click', function() {
                 this.classList.remove("btn-danger");
-                this.classList.add("btn-success")
+                this.classList.add("btn-success");
                 this.innerHTML = "Agregado"
                 var carrito = [];
                 if (localStorage.getItem("carrito")) {  
