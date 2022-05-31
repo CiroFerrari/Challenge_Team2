@@ -1,4 +1,4 @@
-// Se traen los datos de la API
+// Traigo los datos de la Api
 getData()
 var datajson = "" 
 var juguetes = []
@@ -9,8 +9,7 @@ async function getData(){
     .then(response => response.json())
     .then(data => datajson = data)
     var datos = datajson.response
-
-    // Se encierran en una variable, sólo los juguetes
+    // Encierro en una variable, solo los juguetes
     function traerJuguetes(){
         for(juguete of datos){
             if (juguete.tipo == "Juguete"){
@@ -19,8 +18,8 @@ async function getData(){
         }
     }
     traerJuguetes()
-
-    // Función para crear las cartas dinámicamente según la cantidad de juguetes que haya en pantalla
+    console.log(juguetes)
+    // Funcion para crear las cartas dinamicamente segun la cantidad de juguetes que haya en pantalla
     function crearArticulo(parametro){
         var contenedorJuguetes = document.getElementById("contenedorJuguetes") 
         if(parametro.length!=0){
@@ -69,21 +68,58 @@ async function getData(){
         contenedorJuguetes.innerHTML = templateHtml     
         }else{
             contenedorJuguetes.innerHTML = `<p class="my-4 fs-4">No se han encontrado juguetes con ese nombre.</p>`
+            console.log(contenedorJuguetes)
+            console.log("")
         }
     }
-
-    // Se capturan los datos del search
+    // Capturo los datos del search
     var inputsearch = document.getElementById("search")
     inputsearch.addEventListener("keyup", (event) => {
         busqueda = event.target.value;
         filtros();
+        document.querySelectorAll('.boton-agregar').forEach(element => {
+            element.addEventListener('click', function() {
+                this.classList.remove("btn-danger");
+                this.classList.add("btn-success")
+                this.innerHTML = "Agregado"
+                var carrito = [];
+                if (localStorage.getItem("carrito")) {  
+                    carrito = JSON.parse(localStorage.getItem("carrito"));
+                }
+    
+                var cantidad = this.parentElement.querySelector('.cantidad').value;
+                var id = this.getAttribute('data-th');
+                var agregoCantidad = false;
+                var producto = {
+                    id: id,
+                    cantidad: cantidad
+                }
+                if (localStorage.getItem("carrito")) {  
+                    for(var i=0; carrito.length > i; i++){
+                        if(carrito[i].id == id){
+                            carrito[i].cantidad = Number(carrito[i].cantidad) + Number(cantidad); 
+                            agregoCantidad = true;
+                        }
+                    }
+                }
+    
+                if(agregoCantidad === false){
+                    carrito.push(producto);
+                }
+    
+    
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                
+            })
+        });
     })
-     
-    // Se filtra según los input
+    // 
+    // Segun los input, voy filtrando
     function filtros(){
         let filtros = []
         if(busqueda!==""){
             filtros.push(...juguetes.filter(dato => dato.nombre.toLowerCase().includes(busqueda.trim().toLowerCase())))
+            console.log(filtros);
         } else {
             filtros.push(...juguetes)
         }
@@ -93,11 +129,12 @@ async function getData(){
         element.addEventListener('click', function() {
             this.classList.remove("btn-danger");
             this.classList.add("btn-success")
-            this.innerHTML = "¡Agregado!"
+            this.innerHTML = "Agregado"
             var carrito = [];
             if (localStorage.getItem("carrito")) {  
                 carrito = JSON.parse(localStorage.getItem("carrito"));
             }
+
             var cantidad = this.parentElement.querySelector('.cantidad').value;
             var id = this.getAttribute('data-th');
             var agregoCantidad = false;
@@ -113,10 +150,14 @@ async function getData(){
                     }
                 }
             }
+
             if(agregoCantidad === false){
                 carrito.push(producto);
             }
-            localStorage.setItem("carrito", JSON.stringify(carrito));           
+
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            
         })
     });
 }
