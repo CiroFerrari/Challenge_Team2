@@ -1,13 +1,10 @@
 document.getElementById("limpiar-carrito").addEventListener("click", function () {
-    document.getElementById('carrito').innerHTML = "";
+    document.getElementById('carrito').innerHTML = "Su carrito esta vacio";
+    document.getElementById('total').innerHTML = '$0';
+
     localStorage.setItem("carrito", "");
 });
 
-document.querySelectorAll(".eliminar-producto").forEach(element => {
-    element.addEventListener("click", function () {
-        this.closest('.producto').innerHTML = "";
-    })
-});
 
 getData()
 
@@ -20,19 +17,51 @@ async function getData() {
 
     var html = "";
 
-    productosCarrito = JSON.parse(localStorage.getItem("carrito"));
-    html = getCarritoHtml(productosCarrito, productos);
+    if (localStorage.getItem("carrito") != ""){
+         productosCarrito = JSON.parse(localStorage.getItem("carrito"));
+        html = getCarritoHtml(productosCarrito, productos); 
+        document.getElementById('carrito').innerHTML = html;
+    }
+  
 
-    document.getElementById('carrito').innerHTML = html;
+if(html == ""){
+    document.getElementById('carrito').innerHTML = "Su carrito esta vacio";
+    document.getElementById('total').innerHTML = '$0';
+}
 
 
+document.querySelectorAll(".eliminar-producto").forEach(element => {
+    element.addEventListener("click", function () {
+        document.getElementById('carrito').innerHTML = "";
+        productosCarrito = JSON.parse(localStorage.getItem("carrito"));
+        
+        for(var i=0; productosCarrito.length > i; i++){
+            if(this.getAttribute('data-th') == productosCarrito[i].id){
+                productosCarrito[i] = {id: 0, cantidad: 0};
+            }
+        }
+        var carrito = JSON.stringify(productosCarrito);
+        localStorage.setItem("carrito", carrito);
+
+        location.reload();  
+    })
+
+
+});
 
 
     function getCarritoHtml(productosCarrito, productos) {
         var htmlProductos = '';
+        var totalPrice = 0;
+        
+        
         productosCarrito.forEach(element => {
             for (var i = 0; productos.length > i; i++) {
                 if (element.id == productos[i]._id) {
+                    var cantidad = element.cantidad;
+                    if(cantidad > productos[i].stock){
+                        cantidad = productos[i].stock;
+                    }
                     html += `
                             <div class="product card mb-3 mx-2 d-flex flex-column justify-content-between align-items-center py-3" style="width: 20rem; height: 35rem;">
                                 <img class="card-img-top" style = "width: 75%;" src="${productos[i].imagen}" alt="imgproducto">
@@ -42,19 +71,25 @@ async function getData() {
                                 <div class="d-flex flex-column justify-content-end align-items-center">
                                     <div class="d-flex flex-row justify-content-center my-3">
                                         <label class="me-3" for="cantidad">Cantidad</label>
-                                        <input class="ps-1" type="number" name="cantidad" value="${element.cantidad}">
+                                        <p>${cantidad}</p>
                                     </div>
                                     <p class="mt-2">Precio: $ ${productos[i].precio}</p>
-                                    <p class="mb-2">Subtotal: $ ${element.cantidad * productos[i].precio} </p>
-                                    <button class=" btn btn-danger mt-2">Eliminar</button>
+                                    <p class="mb-2">Subtotal: $ ${cantidad * productos[i].precio} </p>
+                                    <button data-th="${element.id}" class="eliminar-producto btn btn-danger mt-2">Eliminar</button>
                                 </div>
-                            </div>`
+                            </div>`;
+
+                            totalPrice = totalPrice + cantidad * productos[i].precio;  
                 }
             }
         });
+
+        document.getElementById('total').innerHTML = '$'+totalPrice;
         return html;
     }
 }
+
+
 /* `
                         <div class="product card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
                             <img src="${producto.imagen}" class="card-img-top" style = "width: 75%;" alt="imagen-farmacia">
