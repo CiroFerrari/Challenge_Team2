@@ -87,6 +87,36 @@ async function getData(){
         let palabrasDelBuscador = contenidoSearch.value.toLowerCase();
         let arregloFiltrado = filterName(palabrasDelBuscador)
         imprimirProductosFarmacia(arregloFiltrado)
+        document.querySelectorAll('.boton-agregar').forEach(element => {
+        element.addEventListener('click', function() {
+            this.classList.remove("btn-danger");
+            this.classList.add("btn-success")
+            this.innerHTML = "¡Agregado!"
+            var carrito = [];
+            if (localStorage.getItem("carrito")) {  
+                carrito = JSON.parse(localStorage.getItem("carrito"));
+            }
+           var cantidad = this.closest('.product').querySelector('.cantidad').value;
+           var id = this.getAttribute('data-th');
+           var agregoCantidad = false;
+           var producto = {
+               id: id,
+               cantidad: cantidad
+           }
+            if (localStorage.getItem("carrito")) {  
+                for(var i=0; carrito.length > i; i++){
+                    if(carrito[i].id == id){
+                        carrito[i].cantidad = Number(carrito[i].cantidad) + Number(cantidad); 
+                        agregoCantidad = true;
+                    }
+                }
+            }
+            if(agregoCantidad === false){
+                carrito.push(producto);
+            }
+           localStorage.setItem("carrito", JSON.stringify(carrito));     
+        })
+    });
     }
     
 // Filtra el nombre del producto puesto en el input search

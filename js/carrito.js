@@ -1,18 +1,18 @@
 
-// EVENTO PARA LIMPIAR CARRITO
+// Evento para limpiar el carrito
 document.getElementById("limpiar-carrito").addEventListener("click", function () {
     document.getElementById('carrito').innerHTML = '<p class="fs-2 text-center">¡Su carrito está vacío!</p>';
     document.getElementById('total').innerHTML = '$0';
 
-    localStorage.setItem("carrito", ""); // vaciar local storage
+    localStorage.setItem("carrito", ""); // Vaciar local storage
 });
 
-// EVENTO PARA FINALIZAR COMPRA
+// Evento para finalizar compra
 document.getElementById("finalizar").addEventListener("click", function () {
     document.getElementById('carrito').innerHTML = '<p class="fs-1 text-center">¡Su compra fue exitosa!</p>';
     document.getElementById('total').innerHTML = '$0';
 
-    localStorage.setItem("carrito", ""); // vaciar carrito
+    localStorage.setItem("carrito", ""); // Vaciar carrito
 });
 
 
@@ -28,18 +28,18 @@ async function getData() {
     var html = "";
 
     if (localStorage.getItem("carrito") != ""){ 
-         productosCarrito = JSON.parse(localStorage.getItem("carrito")); //obtener datos de productos agregados al carrito
-        html = getCarritoHtml(productosCarrito, productos); // funcion para obtener el html de los productos del carrito
+         productosCarrito = JSON.parse(localStorage.getItem("carrito")); // Obtener datos de productos agregados al carrito
+        html = getCarritoHtml(productosCarrito, productos); // Función para obtener el html de los productos del carrito
         document.getElementById('carrito').innerHTML = html;
     }
   
 
-if(html == ""){ // si el html esta vacio es que no tiene productos agregados al carrito
+if(html == ""){ // Si el html está vacío es que no tiene productos agregados al carrito
     document.getElementById('carrito').innerHTML = '<p class="fs-2 text-center">¡Su carrito está vacío!</p>';
     document.getElementById('total').innerHTML = '$0';
 }
 
-// agregar evento a botones para eliminar producto individualmente
+// Agregar evento a botones para eliminar producto individualmente
 document.querySelectorAll(".eliminar-producto").forEach(element => {
     element.addEventListener("click", function () {
         document.getElementById('carrito').innerHTML = "";
@@ -47,13 +47,13 @@ document.querySelectorAll(".eliminar-producto").forEach(element => {
         
         for(var i=0; productosCarrito.length > i; i++){
             if(this.getAttribute('data-th') == productosCarrito[i].id){ 
-                productosCarrito[i] = {id: 0, cantidad: 0}; // si coincide con el producto eliminado, agregarlo en el carrito como vacio
+                productosCarrito[i] = {id: 0, cantidad: 0}; // Si coincide con el producto eliminado, agregarlo en el carrito como vacío
             }
         }
         var carrito = JSON.stringify(productosCarrito);
-        localStorage.setItem("carrito", carrito); // setear carrito en local storage sin el producto borrado
+        localStorage.setItem("carrito", carrito); // Setear carrito en local storage sin el producto borrado
 
-        location.reload();  // recargar pagina para que se actualice el html sin el producto borrado
+        location.reload();  // Recargar página para que se actualice el html sin el producto borrado
     })
 
 
@@ -70,7 +70,7 @@ document.querySelectorAll(".eliminar-producto").forEach(element => {
                 if (element.id == productos[i]._id) {
                     var cantidad = element.cantidad;
                     if(cantidad > productos[i].stock){
-                        cantidad = productos[i].stock;  // si supera el stock, que le ponga como cantidad el limite de stock
+                        cantidad = productos[i].stock;  // Si supera el stock, que le ponga como cantidad el límite de stock
                     }
                     html += `
                             <div class="product card mb-3 mx-2 d-flex flex-column justify-content-between align-items-center py-3" style="width: 20rem; height: 35rem;">
@@ -89,7 +89,7 @@ document.querySelectorAll(".eliminar-producto").forEach(element => {
                                 </div>
                             </div>`;
 
-                            totalPrice = totalPrice + cantidad * productos[i].precio;   // sumar precio total acumulado
+                            totalPrice = totalPrice + cantidad * productos[i].precio;   // Sumar precio total acumulado
                 }
             }
         });
