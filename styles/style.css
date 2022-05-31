@@ -92,6 +92,7 @@ main {
 
     .carrito--total {
         position: inherit;
+        align-self: center!important;
     }
 
     .footer--div {
@@ -99,4 +100,10 @@ main {
     }
 
 
+}
+
+@media (max-width: 350px) {
+    .carrito--total {
+        width: 16rem!important;
+    }
 }
