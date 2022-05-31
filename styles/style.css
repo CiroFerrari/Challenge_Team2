@@ -70,3 +70,33 @@ main {
 }
 
 /* Carrito */
+
+@media (max-width: 576px) { 
+
+    .contacto--main {
+        flex-direction: column;
+    }
+
+    .contacto--div--form {
+        width: 90%!important;
+    }
+
+    .contacto--iframe {
+        width: 400px;
+        height: 300px;
+    }
+
+    .carrito--main {
+        flex-direction: column-reverse;
+    }
+
+    .carrito--total {
+        position: inherit;
+    }
+
+    .footer--div {
+        flex-direction: column-reverse;
+    }
+
+
+}
