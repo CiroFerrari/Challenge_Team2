@@ -94,25 +94,3 @@ document.querySelectorAll(".eliminar-producto").forEach(element => {
         return html;
     }
 }
-
-
-/* `
-                        <div class="product card m-2 d-flex flex-column justify-content-between align-items-center" style="width: 20rem; height: 40rem;">
-                            <img src="${producto.imagen}" class="card-img-top" style = "width: 75%;" alt="imagen-farmacia">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center h-50">
-                                    <div class="d-flex flex-column justify-content-between align-items-center">
-                                        <h5 class="card-title">${producto.nombre}</h5>
-                                        <p class="card-text">${producto.descripcion}</p>
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-end align-items-center">
-                                        <p class="my-1" style="color: red;">Stock: ${producto.stock}  Ultimas unidades!!</p>
-                                        <p class="fw-bold my-1">Precio: $ ${producto.precio}</p>
-                                        <div class="d-flex flex-row justify-content-center my-1">
-                                            <label class="me-3">Cantidad:</label>
-                                            <input type="number" class="cantidad" name="cantidad" value="1">
-                                        </div>
-                                        <button class="boton-agregar btn btn-danger mt-2" type="button" data-th="${producto._id}">Agregar al carrito</button>
-                                    </div>
-                                </div>
-                        </div>
-                        ` */
