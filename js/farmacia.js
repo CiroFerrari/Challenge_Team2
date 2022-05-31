@@ -1,18 +1,16 @@
 getData()
 
+// Función para traer los datos de la API
 async function getData(){
     await fetch("https://apipetshop.herokuapp.com/api/articulos")
     .then (response => response.json())
     .then (data => {
     dataArray = data.response})
-        console.log(dataArray)
-
     let productosFarmacia = [];
     let divContenedorFarmacia = document.getElementById("ContenedorFarmacia")
     let contenedorBoton1 = document.getElementById("boton-agregar1")
     
-
-// Funcion para traer los productos de farmacia       
+// Función para traer los productos de farmacia       
     function traerProductosFarmacia() {
         
         for (producto of dataArray) {
@@ -23,9 +21,8 @@ async function getData(){
         return productosFarmacia;
     }
     traerProductosFarmacia()
-    console.log(productosFarmacia)
 
-// Funcion para imprimir los productos de farmacia
+// Función para imprimir los productos de farmacia
     function imprimirProductosFarmacia(paramArray){
         if(paramArray.length != 0){
                 let nuevoHtml = "";
@@ -85,7 +82,6 @@ async function getData(){
     let contenidoSearch = document.querySelector("#searchInput");
     contenidoSearch.addEventListener("keyup", filterAndRender);
 
-    
 // Filtra e imprime el nombre del producto puesto en el input search
     function filterAndRender(){
         let palabrasDelBuscador = contenidoSearch.value.toLowerCase();
@@ -93,24 +89,21 @@ async function getData(){
         imprimirProductosFarmacia(arregloFiltrado)
     }
     
-// filtra el nombre del producto puesto en el input search
+// Filtra el nombre del producto puesto en el input search
     function filterName(parametro) {
         let arregloFiltrado = productosFarmacia.filter((producto) => {
                 return producto.nombre.toLowerCase().includes(parametro)})
         return arregloFiltrado 
     }  
-    
     document.querySelectorAll('.boton-agregar').forEach(element => {
         element.addEventListener('click', function() {
             this.classList.remove("btn-danger");
             this.classList.add("btn-success")
-            this.innerHTML = "agregado"
-           
+            this.innerHTML = "¡Agregado!"
             var carrito = [];
             if (localStorage.getItem("carrito")) {  
                 carrito = JSON.parse(localStorage.getItem("carrito"));
             }
-
            var cantidad = this.closest('.product').querySelector('.cantidad').value;
            var id = this.getAttribute('data-th');
            var agregoCantidad = false;
@@ -126,16 +119,10 @@ async function getData(){
                     }
                 }
             }
-
             if(agregoCantidad === false){
                 carrito.push(producto);
             }
-            
-
-
-           localStorage.setItem("carrito", JSON.stringify(carrito));
-            
+           localStorage.setItem("carrito", JSON.stringify(carrito));     
         })
     });
-
 }

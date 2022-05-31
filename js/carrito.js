@@ -98,4 +98,3 @@ document.querySelectorAll(".eliminar-producto").forEach(element => {
         return html;
     }
 }
-
