@@ -34,7 +34,7 @@ async function getData() {
             for (var i = 0; productos.length > i; i++) {
                 if (element.id == productos[i]._id) {
                     html += `
-                            <div class="product card m-2 d-flex flex-column justify-content-between align-items-center py-3" style="width: 20rem; height: 35rem;">
+                            <div class="product card mb-3 mx-2 d-flex flex-column justify-content-between align-items-center py-3" style="width: 20rem; height: 35rem;">
                                 <img class="card-img-top" style = "width: 75%;" src="${productos[i].imagen}" alt="imgproducto">
                                 <div class="d-flex flex-column justify-content-between align-items-center">
                                     <h4 class="card-title text-center"> ${productos[i].nombre}</h4>
