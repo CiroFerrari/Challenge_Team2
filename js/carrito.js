@@ -1,11 +1,11 @@
 document.getElementById("limpiar-carrito").addEventListener("click", function () {
-    document.getElementById('carrito').innerHTML = "Su carrito esta vacio";
+    document.getElementById('carrito').innerHTML = '<p class="fs-2 text-center">¡Su carrito está vacío!</p>';
     document.getElementById('total').innerHTML = '$0';
 
     localStorage.setItem("carrito", "");
 });
 document.getElementById("finalizar").addEventListener("click", function () {
-    document.getElementById('carrito').innerHTML = "Su compra fue exitosa";
+    document.getElementById('carrito').innerHTML = '<p class="fs-1 text-center">¡Su compra fue exitosa!</p>';
     document.getElementById('total').innerHTML = '$0';
 
     localStorage.setItem("carrito", "");
@@ -31,7 +31,7 @@ async function getData() {
   
 
 if(html == ""){
-    document.getElementById('carrito').innerHTML = "Su carrito esta vacio";
+    document.getElementById('carrito').innerHTML = '<p class="fs-2 text-center">¡Su carrito está vacío!</p>';
     document.getElementById('total').innerHTML = '$0';
 }
 
